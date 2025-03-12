@@ -18,6 +18,7 @@
 
 body {
   font-family: "Open Sans", sans-serif;
+  /* background-color:rgb(236, 12, 12); */
   /* color: var(--base-yellow-2); */
 }
 
@@ -78,7 +79,7 @@ section {
 --------------------------------------------------------------*/
 .breadcrumbs {
   padding: 15px 0;
-  background: #012970;
+  background: var(--base-yellow-4);
   min-height: 40px;
   margin-top: 82px;
   color: #fff;
@@ -194,7 +195,7 @@ section {
   font-size: 30px;
   font-weight: 700;
   letter-spacing: 1px;
-  color: #012970;
+  color: var(--base-yellow-4);
   font-family: "Nunito", sans-serif;
   margin-top: 3px;
 }
@@ -229,7 +230,7 @@ section {
   font-family: "Nunito", sans-serif;
   font-size: 16px;
   font-weight: 700;
-  color: #013289;
+  color: var(--base-yellow-4);
   white-space: nowrap;
   transition: 0.3s;
 }
@@ -241,11 +242,11 @@ section {
 }
 
 .navbar a:hover, .navbar .active, .navbar li:hover > a {
-  color: #4154f1;
+  color: var(--base-yellow-1)1;
 }
 
 .navbar .getstarted {
-  background: #4154f1;
+  background: var(--base-yellow-1)1;
   padding: 8px 20px;
   margin-left: 30px;
   border-radius: 4px;
@@ -254,7 +255,7 @@ section {
 
 .navbar .getstarted:hover {
   color: #fff;
-  background: #5969f3;
+  background: var(--base-yellow-2);
 }
 
 .navbar .dropdown ul {
@@ -289,7 +290,7 @@ section {
 }
 
 .navbar .dropdown ul a:hover, .navbar .dropdown ul .active:hover, .navbar .dropdown ul li:hover > a {
-  color: #4154f1;
+  color: var(--base-yellow-1);
 }
 
 .navbar .dropdown:hover > ul {
@@ -324,7 +325,7 @@ section {
 * Mobile Navigation 
 */
 .mobile-nav-toggle {
-  color: #012970;
+  color: var(--base-yellow-4);
   font-size: 28px;
   cursor: pointer;
   display: none;
@@ -379,11 +380,11 @@ section {
 .navbar-mobile a {
   padding: 10px 20px;
   font-size: 15px;
-  color: #012970;
+  color: var(--base-yellow-4);
 }
 
 .navbar-mobile a:hover, .navbar-mobile .active, .navbar-mobile li:hover > a {
-  color: #4154f1;
+  color: var(--base-yellow-1);
 }
 
 .navbar-mobile .getstarted {
@@ -415,7 +416,7 @@ section {
 }
 
 .navbar-mobile .dropdown ul a:hover, .navbar-mobile .dropdown ul .active:hover, .navbar-mobile .dropdown ul li:hover > a {
-  color: #4154f1;
+  color: var(--base-yellow-1);
 }
 
 .navbar-mobile .dropdown > .dropdown-active {
@@ -428,7 +429,7 @@ section {
 .hero {
   width: 100%;
   height: 100vh;
-  background: url(../img/hero-bg.png) top center no-repeat;
+  background: url(../img/hero-bg.jpg) top center no-repeat;
   background-size: cover;
 }
 
@@ -453,7 +454,7 @@ section {
   transition: 0.5s;
   color: #fff;
   background: var(--base-yellow-1);
-  box-shadow: 0px 5px 30px rgba(65, 84, 241, 0.4);
+  box-shadow: 0px 5px 30px rgba(241, 226, 65, 0.4);
 }
 
 .hero .btn-get-started span {
@@ -538,7 +539,7 @@ section {
 .about h2 {
   font-size: 24px;
   font-weight: 700;
-  color: #012970;
+  color: var(--base-yellow-4);
 }
 
 .about p {
@@ -625,7 +626,7 @@ section {
   font-size: 42px;
   line-height: 0;
   margin-right: 20px;
-  color: #4154f1;
+  color: var(--base-yellow-1);
 }
 
 .counts .count-box span {
@@ -654,7 +655,7 @@ section {
 
 .features .feature-box h3 {
   font-size: 18px;
-  color: #012970;
+  color: var(--base-yellow-4);
   font-weight: 700;
   margin: 0;
 }
@@ -700,7 +701,7 @@ section {
   text-transform: uppercase;
   font-size: 15px;
   font-weight: 600;
-  color: #012970;
+  color: var(--base-yellow-4);
   padding: 12px 0;
   margin-right: 25px;
   margin-bottom: -2px;
@@ -716,14 +717,14 @@ section {
   font-size: 18px;
   margin: 0;
   font-weight: 700;
-  color: #012970;
+  color: var(--base-yellow-4);
 }
 
 .features .feture-tabs .tab-content i {
   font-size: 24px;
   line-height: 0;
   margin-right: 8px;
-  color: #4154f1;
+  color: var(--base-yellow-1);
 }
 
 .features .feature-icons {
@@ -731,7 +732,7 @@ section {
 }
 
 .features .feature-icons h3 {
-  color: #012970;
+  color: var(--base-yellow-4);
   font-weight: 700;
   font-size: 32px;
   margin-bottom: 20px;
@@ -752,7 +753,7 @@ section {
   font-size: 20px;
   font-weight: 700;
   margin: 0 0 10px 0;
-  color: #012970;
+  color: var(--base-yellow-4);
 }
 
 .features .feature-icons .content .icon-box i {
@@ -993,18 +994,18 @@ section {
   display: inline-block;
   padding: 8px 40px 10px 40px;
   border-radius: 50px;
-  color: #4154f1;
+  color: var(--base-yellow-1);
   transition: none;
   font-size: 16px;
   font-weight: 400;
   font-family: "Nunito", sans-serif;
   font-weight: 600;
   transition: 0.3s;
-  border: 1px solid #4154f1;
+  border: 1px solid var(--base-yellow-1);
 }
 
 .pricing .btn-buy:hover {
-  background: #4154f1;
+  background: var(--base-yellow-1);
   color: #fff;
 }
 
@@ -1017,7 +1018,7 @@ section {
   z-index: 1;
   font-size: 14px;
   padding: 1px 0 3px 0;
-  background: #4154f1;
+  background: var(--base-yellow-1);
   color: #fff;
 }
 
@@ -1159,12 +1160,12 @@ section {
 
 .portfolio .portfolio-wrap .portfolio-info h4 {
   font-size: 20px;
-  color: #012970;
+  color: var(--base-yellow-4);
   font-weight: 700;
 }
 
 .portfolio .portfolio-wrap .portfolio-info p {
-  color: #012970;
+  color: var(--base-yellow-4);
   font-weight: 600;
   font-size: 14px;
   text-transform: uppercase;
@@ -1447,7 +1448,7 @@ section {
   font-weight: 700;
   margin-bottom: 5px;
   font-size: 20px;
-  color: #012970;
+  color: var(--base-yellow-4);
 }
 
 .team .member .member-info span {
@@ -1539,7 +1540,7 @@ section {
 
 .recent-blog-posts .post-box .post-title {
   font-size: 24px;
-  color: #012970;
+  color: var(--base-yellow-4);
   font-weight: 700;
   margin-bottom: 18px;
   position: relative;
@@ -1585,7 +1586,7 @@ section {
 
 .contact .info-box h3 {
   font-size: 20px;
-  color: #012970;
+  color: var(--base-yellow-4);
   font-weight: 700;
   margin: 20px 0 10px 0;
 }
@@ -1728,17 +1729,17 @@ p .truncate {
 }
 
 .blog .entry .entry-title a {
-  color: #012970;
+  color: var(--base-yellow-4);
   transition: 0.3s;
 }
 
 .blog .entry .entry-title a:hover {
-  color: #4154f1;
+  color: var(--base-yellow-1);
 }
 
 .blog .entry .entry-meta {
   margin-bottom: 15px;
-  color: #4084fd;
+  color:rgb(253, 171, 64);
 }
 
 .blog .entry .entry-meta ul {
@@ -1778,7 +1779,7 @@ p .truncate {
 
 .blog .entry .entry-content .read-more a {
   display: inline-block;
-  background: #4154f1;
+  background: var(--base-yellow-1);
   color: #fff;
   padding: 6px 20px;
   transition: 0.3s;
@@ -1787,7 +1788,7 @@ p .truncate {
 }
 
 .blog .entry .entry-content .read-more a:hover {
-  background: #5969f3;
+  background: var(--base-yellow-2);
 }
 
 .blog .entry .entry-content h3 {
@@ -1821,7 +1822,7 @@ p .truncate {
   top: 0;
   bottom: 0;
   width: 3px;
-  background-color: #012970;
+  background-color: var(--base-yellow-4);
   margin-top: 20px;
   margin-bottom: 20px;
 }
@@ -2159,7 +2160,7 @@ p .truncate {
 }
 
 .blog .entry .entry-footer a:hover {
-  color: #4154f1;
+  color: var(--base-yellow-1);
 }
 
 .blog .entry .entry-footer .cats {
@@ -2218,7 +2219,7 @@ p .truncate {
   font-size: 22px;
   margin-bottom: 0px;
   padding: 0;
-  color: #012970;
+  color: var(--base-yellow-4);
 }
 
 .blog .blog-author .social-links {
@@ -2268,12 +2269,12 @@ p .truncate {
 }
 
 .blog .blog-comments .comment h5 a:hover {
-  color: #4154f1;
+  color: var(--base-yellow-1);
 }
 
 .blog .blog-comments .comment h5 .reply {
   padding-left: 10px;
-  color: #012970;
+  color: var(--base-yellow-4);
 }
 
 .blog .blog-comments .comment h5 .reply i {
@@ -2336,15 +2337,15 @@ p .truncate {
   border-radius: 4px;
   padding: 10px 20px;
   border: 0;
-  background-color: #012970;
+  background-color: var(--base-yellow-1);
 }
 
 .blog .blog-comments .reply-form .btn-primary:hover {
-  background-color: #013289;
+  background-color: var(--base-yellow-4);
 }
 
 .blog .blog-pagination {
-  color: #024ed5;
+  color:rgb(213, 157, 2);
 }
 
 .blog .blog-pagination ul {
@@ -2360,7 +2361,7 @@ p .truncate {
 }
 
 .blog .blog-pagination li a {
-  color: #012970;
+  color: var(--base-yellow-4);
   padding: 7px 16px;
   display: flex;
   align-items: center;
@@ -2368,7 +2369,7 @@ p .truncate {
 }
 
 .blog .blog-pagination li.active, .blog .blog-pagination li:hover {
-  background: #4154f1;
+  background: var(--base-yellow-1);
 }
 
 .blog .blog-pagination li.active a, .blog .blog-pagination li:hover a {
@@ -2386,7 +2387,7 @@ p .truncate {
   font-weight: 700;
   padding: 0 0 0 0;
   margin: 0 0 15px 0;
-  color: #012970;
+  color: var(--base-yellow-4);
   position: relative;
 }
 
@@ -2418,7 +2419,7 @@ p .truncate {
   font-size: 16px;
   padding: 0 15px;
   margin: -1px;
-  background: #4154f1;
+  background: var(--base-yellow-1);
   color: #fff;
   transition: 0.3s;
   border-radius: 0 4px 4px 0;
@@ -2430,7 +2431,7 @@ p .truncate {
 }
 
 .blog .sidebar .search-form form button:hover {
-  background: #5465f2;
+  background: var(--base-yellow-1);
 }
 
 .blog .sidebar .categories ul {
@@ -2443,12 +2444,12 @@ p .truncate {
 }
 
 .blog .sidebar .categories ul a {
-  color: #012970;
+  color: var(--base-yellow-4);
   transition: 0.3s;
 }
 
 .blog .sidebar .categories ul a:hover {
-  color: #4154f1;
+  color: var(--base-yellow-1);
 }
 
 .blog .sidebar .categories ul a span {
@@ -2473,7 +2474,7 @@ p .truncate {
 }
 
 .blog .sidebar .recent-posts h4 a {
-  color: #012970;
+  color: var(--base-yellow-4);
   transition: 0.3s;
 }
 
@@ -2503,7 +2504,7 @@ p .truncate {
 }
 
 .blog .sidebar .tags ul a {
-  color: #0257ee;
+  color:var(--base-yellow-2);
   font-size: 14px;
   padding: 6px 14px;
   margin: 0 6px 8px 0;
@@ -2514,8 +2515,8 @@ p .truncate {
 
 .blog .sidebar .tags ul a:hover {
   color: #fff;
-  border: 1px solid #4154f1;
-  background: #4154f1;
+  border: 1px solid var(--base-yellow-1);
+  background: var(--base-yellow-1);
 }
 
 .blog .sidebar .tags ul a span {
@@ -2545,7 +2546,7 @@ p .truncate {
   padding: 0;
   line-height: 1;
   font-weight: 700;
-  color: #012970;
+  color: var(--base-yellow-4);
 }
 
 .footer .footer-newsletter form {
@@ -2615,7 +2616,7 @@ p .truncate {
   font-size: 30px;
   font-weight: 700;
   letter-spacing: 1px;
-  color: #012970;
+  color: var(--base-yellow-4);
   font-family: "Nunito", sans-serif;
   margin-top: 3px;
 }
@@ -2637,13 +2638,13 @@ p .truncate {
 }
 
 .footer .footer-top .social-links a:hover {
-  color: #012970;
+  color: var(--base-yellow-4);
 }
 
 .footer .footer-top h4 {
   font-size: 16px;
   font-weight: bold;
-  color: #012970;
+  color: var(--base-yellow-4);
   text-transform: uppercase;
   position: relative;
   padding-bottom: 12px;
@@ -2684,7 +2685,7 @@ p .truncate {
 }
 
 .footer .footer-top .footer-links ul a:hover {
-  color: #4154f1;
+  color: var(--base-yellow-1);
 }
 
 .footer .footer-top .footer-contact p {
@@ -2694,12 +2695,12 @@ p .truncate {
 .footer .copyright {
   text-align: center;
   padding-top: 30px;
-  color: #012970;
+  color: var(--base-yellow-4);
 }
 
 .footer .credits {
   padding-top: 10px;
   text-align: center;
   font-size: 13px;
-  color: #012970;
+  color: var(--base-yellow-4);
 }

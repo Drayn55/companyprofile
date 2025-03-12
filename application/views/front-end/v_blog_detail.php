@@ -181,6 +181,20 @@ function ambil_reply($db, $parent_id, $marginLeft = 30) {
 
   return $output;
 }
+
+  // Query untuk menghitung jumlah komentar
+  $query = "SELECT COUNT(*) as total_comments FROM tbl_komentar WHERE berita_id = ?";
+  $stmt = $db->prepare($query);
+  if ($stmt === false) {
+      die("Prepare failed: " . $db->error);
+  }
+  $stmt->bind_param("i", $berita->id_berita);
+  $stmt->execute();
+  $result = $stmt->get_result();
+  $row = $result->fetch_assoc();
+  $total_comments = $row['total_comments'];
+  $stmt->close();
+
 ?>
 
 <main id="main">
@@ -221,7 +235,7 @@ function ambil_reply($db, $parent_id, $marginLeft = 30) {
               <ul>
                 <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a><?= $berita->nama; ?></a></li>
                 <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a><?= date('d-M-Y H:i', strtotime($berita->date_cretated)); ?></a></li>
-                <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a>12 Comments</a></li>
+                <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a><?= $total_comments; ?> Comments</a></li>
               </ul>
             </div>
 
