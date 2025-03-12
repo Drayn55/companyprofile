@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 11, 2025 at 11:34 PM
+-- Generation Time: Mar 12, 2025 at 10:00 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.3.17
 
@@ -34,6 +34,15 @@ CREATE TABLE `request_logs` (
   `request_count` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `request_logs`
+--
+
+INSERT INTO `request_logs` (`id`, `ip_address`, `request_time`, `request_count`) VALUES
+(9, 'aadsssss', '2025-03-11 10:12:36', 24),
+(12, '::1', '2025-03-12 10:15:46', 4),
+(14, 'b', '2025-03-10 10:15:58', NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -45,30 +54,23 @@ CREATE TABLE `tbl_komentar` (
   `nama` varchar(50) DEFAULT NULL,
   `komentar` text NOT NULL,
   `parent_id` int(11) DEFAULT NULL,
-  `tanggal_komen` datetime DEFAULT NULL
+  `tanggal_komen` datetime DEFAULT NULL,
+  `berita_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `tbl_komentar`
 --
 
-INSERT INTO `tbl_komentar` (`id`, `nama`, `komentar`, `parent_id`, `tanggal_komen`) VALUES
-(1, 'dika', 'can you see this comment sir?\r\n\r\n', 0, '2025-03-10 13:45:25'),
-(2, 'anonimus', 'hallo ka nanti kita sholat terawih dimana?', 1, '2025-03-10 13:46:03'),
-(3, 'ika', 'amman', 2, '2025-03-10 13:46:20'),
-(4, 'gopal', 'dah nak buke nih laper nyee', 0, '2025-03-10 13:46:48'),
-(34, 'hayo', 'oke', 0, '2025-03-10 17:25:20'),
-(40, '1', '1', 0, '2025-03-11 17:10:47'),
-(41, '2', '2', 0, '2025-03-11 17:10:50'),
-(42, '3', '3', 0, '2025-03-11 17:10:54'),
-(43, '4', '4', 0, '2025-03-11 17:10:58'),
-(44, '5', '5', 0, '2025-03-11 17:11:01'),
-(45, '6', '6', 44, '2025-03-11 19:21:22'),
-(46, '7', '7', 43, '2025-03-11 19:21:32'),
-(47, '8', '8', 46, '2025-03-11 19:21:41'),
-(48, '9', '9', 47, '2025-03-11 19:21:55'),
-(49, '10', '10', 0, '2025-03-11 19:22:07'),
-(50, '10', '10', 48, '2025-03-11 19:25:21');
+INSERT INTO `tbl_komentar` (`id`, `nama`, `komentar`, `parent_id`, `tanggal_komen`, `berita_id`) VALUES
+(65, '11', '11', 0, '2025-03-12 09:53:48', 24),
+(66, '12', '12', 65, '2025-03-12 10:00:52', 24),
+(67, 'aiak', 'ah basi lah', 0, '2025-03-12 10:01:50', 22),
+(68, '13', '13', 0, '2025-03-12 10:14:52', 24),
+(69, '14', '14', 68, '2025-03-12 10:15:46', 24),
+(70, '15', '15', 0, '2025-03-12 10:16:50', 24),
+(71, '16', '16', 70, '2025-03-12 10:17:15', 24),
+(72, '17', '17', 71, '2025-03-12 10:17:37', 24);
 
 --
 -- Indexes for dumped tables
@@ -94,13 +96,13 @@ ALTER TABLE `tbl_komentar`
 -- AUTO_INCREMENT for table `request_logs`
 --
 ALTER TABLE `request_logs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `tbl_komentar`
 --
 ALTER TABLE `tbl_komentar`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
