@@ -1,47 +1,133 @@
 <?php
+$db = mysqli_connect('localhost', 'root', '', 'db_komentar');
+if (!$db) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+
+// Function untuk sanitasi input
+function sanitize_input($data) {
+    return htmlspecialchars(strip_tags(trim($data)), ENT_QUOTES, 'UTF-8');
+}
+
+// Function untuk cek CSRF token
+function check_csrf_token($token) {
+    if (!isset($_SESSION['csrf_token']) || $token !== $_SESSION['csrf_token']) {
+        $_SESSION['error_message'] = "Invalid CSRF token";
+        header("Location: " . $_SERVER['REQUEST_URI']);
+        exit();
+    }
+}
+
+// Function untuk cek rate limiting
+function check_rate_limit($db, $ip_address) {
+    $limit = 5; // Maximum number of requests
+    $time_frame = '1 hour'; // Time frame for rate limiting
+    $max_logs = 3; // Maximum number of logs to keep
+
+    // Inisialisasi variabel request_count
+    $request_count = 0;
+    
+    // Check the number of requests from the IP address within the time frame
+    $query = "SELECT request_count FROM request_logs WHERE ip_address = ? AND request_time > (NOW() - INTERVAL $time_frame)";
+    $stmt = $db->prepare($query);
+    $stmt->bind_param("s", $ip_address);
+    $stmt->execute();
+    $stmt->bind_result($request_count);
+    $stmt->fetch();
+    $stmt->close();
+
+    if ($request_count >= $limit) {
+        $_SESSION['error_message'] = "Rate limit exceeded. Please try again later.";
+        header("Location: " . $_SERVER['REQUEST_URI']);
+        exit();
+    }
+
+    // Update or insert the request log
+    if ($request_count) {
+        $query = "UPDATE request_logs SET request_count = request_count + 1 WHERE ip_address = ? AND request_time > (NOW() - INTERVAL $time_frame)";
+    } else {
+        $query = "INSERT INTO request_logs (ip_address, request_time, request_count) VALUES (?, NOW(), 1)";
+    }
+    $stmt = $db->prepare($query);
+    $stmt->bind_param("s", $ip_address);
+    $stmt->execute();
+    $stmt->close();
+
+    // Check the total number of logs and delete the oldest if necessary
+    $query = "SELECT COUNT(*) FROM request_logs";
+    $result = $db->query($query);
+    $row = $result->fetch_row();
+    $total_logs = $row[0];
+
+    if ($total_logs > $max_logs) {
+        $query = "DELETE FROM request_logs ORDER BY request_time ASC LIMIT " . ($total_logs - $max_logs);
+        $db->query($query);
+    }
+}
+
 // Generate CSRF token jika belum ada
 if (empty($_SESSION['csrf_token'])) {
-  $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
 }
+
 // Jika form dikirim (tanpa AJAX, langsung dengan PHP)
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  // Cek CSRF token
-  if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
-      die("Invalid CSRF token");
-  }
 
-  // Ambil data dari form
-  $nama = sanitize_input($_POST["nama"]);
-  $komentar = sanitize_input($_POST["komentar"]);
-  $parent_id = sanitize_input($_POST["parent_id"]);
+    // Check CSRF token
+    check_csrf_token($_POST['csrf_token']);
 
-  // Validasi input
-  if (strlen($nama) > 100 || strlen($komentar) > 1000 || !is_numeric($parent_id)) {
-      die("Invalid input");
-  }
+    // Get the IP address of the client
+    $ip_address = $_SERVER['REMOTE_ADDR'];
+    
+    // Check rate limiting
+    check_rate_limit($db, $ip_address);
 
-  // Set timezone Indonesia
-  date_default_timezone_set('Asia/Jakarta');
-  $tanggal_komen = date('Y-m-d H:i:s');
+    // Ambil data dari form
+    $nama = sanitize_input($_POST["nama"]);
+    $komentar = sanitize_input($_POST["komentar"]);
+    $parent_id = sanitize_input($_POST["parent_id"]);
+    $post_id = sanitize_input($_POST["post_id"]);
 
-  // Insert ke database
-  $query = "INSERT INTO tbl_komentar (nama, komentar, parent_id, tanggal_komen) VALUES (?, ?, ?, ?)";
-  $stmt = $db->prepare($query);
-  $stmt->bind_param("ssis", $nama, $komentar, $parent_id, $tanggal_komen);
-  $stmt->execute();
+    // Debugging: Tampilkan nilai input
+    error_log("Nama: $nama, Komentar: $komentar, Parent ID: $parent_id, Post ID: $post_id");
 
-  // Redirect untuk refresh halaman agar komentar langsung muncul
-  header("Location: " . $_SERVER['REQUEST_URI']);
-  exit();
+    // Validasi input
+    if (strlen($nama) > 100 || strlen($komentar) > 1000 || !is_numeric($parent_id) || !is_numeric($post_id)) {
+        $_SESSION['error_message'] = "Invalid input";
+        header("Location: " . $_SERVER['REQUEST_URI']);
+        exit();
+    }
+
+    // Set timezone Indonesia
+    date_default_timezone_set('Asia/Jakarta');
+    $tanggal_komen = date('Y-m-d H:i:s');
+
+    // Insert ke database
+    $query = "INSERT INTO tbl_komentar (nama, komentar, parent_id, berita_id, tanggal_komen) VALUES (?, ?, ?, ?, ?)";
+    $stmt = $db->prepare($query);
+    if ($stmt === false) {
+        $_SESSION['error_message'] = "Prepare failed: " . $db->error;
+        header("Location: " . $_SERVER['REQUEST_URI']);
+        exit();
+    }
+    $stmt->bind_param("ssiss", $nama, $komentar, $parent_id, $post_id, $tanggal_komen);
+    $stmt->execute();
+
+    // Redirect untuk refresh halaman agar komentar langsung muncul
+    header("Location: " . $_SERVER['REQUEST_URI']);
+    exit();
 }
 
 // init output
-$db = mysqli_connect('localhost', 'root', '', 'db_komentar');
 $output = '';
 
 // lakukan query select order by untuk mengurutkan komentar baru pada tbl_komentar
-$query = "SELECT * FROM tbl_komentar WHERE parent_id = 0 ORDER BY id DESC";
+$query = "SELECT * FROM tbl_komentar WHERE parent_id = 0 AND berita_id = ? ORDER BY id DESC";
 $stmt = $db->prepare($query);
+if ($stmt === false) {
+    die("Prepare failed: " . $db->error);
+}
+$stmt->bind_param("i", $berita->id_berita);
 $stmt->execute();
 $res = $stmt->get_result();
 
@@ -54,7 +140,7 @@ while ($row = $res->fetch_assoc()) {
     <div class="d-flex">
       <div class="comment-img"><i class="bi bi-person-circle" style="font-size:30px;"></i></div>
       <div>
-        <h5><a href="">' . $row["nama"] . '</a> <a href="#" class="reply reply-btn"><i class="bi bi-reply-fill"></i> Reply</a></h5>
+        <h5><a href="">' . $row["nama"] . '</a> <a href="#" class="reply reply-btn" data-id="' . $row["id"] . '"><i class="bi bi-reply-fill"></i> Reply</a></h5>
         <time datetime="' . $row["tanggal_komen"] . '">' . $row["tanggal_komen"] . '</time>
         <p>' . $row["komentar"] . '</p>
       </div>
@@ -70,6 +156,9 @@ function ambil_reply($db, $parent_id, $marginLeft = 30) {
   $output = '';
   $query = "SELECT * FROM tbl_komentar WHERE parent_id=? ORDER BY id ASC";
   $stmt = $db->prepare($query);
+  if ($stmt === false) {
+      die("Prepare failed: " . $db->error);
+  }
   $stmt->bind_param("s", $parent_id);
   $stmt->execute();
   $res = $stmt->get_result();
@@ -176,8 +265,15 @@ function ambil_reply($db, $parent_id, $marginLeft = 30) {
         <div class="reply-form">
             <h4>Leave a Reply</h4>
             <p>Your email address will not be published. Required fields are marked * </p>
+            <?php if (isset($_SESSION['error_message'])): ?>
+                <div class="alert alert-danger" role="alert">
+                    <?= $_SESSION['error_message']; ?>
+                </div>
+                <?php unset($_SESSION['error_message']); ?>
+            <?php endif; ?>
             <form method="post">
                 <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
+                <input type="hidden" name="post_id" value="<?= $berita->id_berita; ?>">
                 <div class="row">
                     <div class="col form-group">
                     <label for="nama" class="form-label">Nama</label>
