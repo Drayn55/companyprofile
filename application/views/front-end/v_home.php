@@ -15,8 +15,8 @@
           </div>
         </div>
       </div>
-      <div class="col-lg-6 hero-img" data-aos="zoom-out" data-aos-delay="200">
-        <img src="<?= base_url(); ?>vendor/front-end/assets/img/hero-img.png" class="img-fluid" alt="">
+      <div class="col-lg-6 hero-img overflow-hidden rounded-4" data-aos="zoom-out" data-aos-delay="200">
+        <img src="<?= base_url() ?>vendor/front-end/assets/img/hero-img.jpg" class="img-fluid" alt="">
       </div>
     </div>
   </div>
@@ -46,7 +46,7 @@
         </div>
 
         <div class="col-lg-6 d-flex align-items-center" data-aos="zoom-out" data-aos-delay="200">
-          <img src="<?= base_url(); ?>vendor/front-end/assets/img/about.jpg" class="img-fluid" alt="">
+          <img src="<?= base_url(); ?>vendor/front-end/assets/img/hero-img-2.jpg" class="img-fluid" alt="">
         </div>
 
       </div>
@@ -352,7 +352,7 @@
               <div class="service-box blue">
                 <div class="post-img"> <img src="<?= base_url('assets/img/layanan/') . $value->gambar_layanan; ?>" alt="" class="img-fluid rounded " style="height: 100px; width:100px;">
                 </div>
-                <h3><?= $value->judul_layanan; ?></h3>
+                <h3 class="mt-4"><?= $value->judul_layanan; ?></h3>
                 <a href="<?= base_url('home/detaillayanan/' . $value->slug_layanan); ?>" class="read-more"><span>Read More</span> <i class="bi bi-arrow-right"></i></a>
               </div>
             </div>
@@ -703,7 +703,7 @@
           if ($value->status_berita == "Publish") : ?>
             <div class="col-lg-4 mb-2">
               <div class="post-box">
-                <div class="post-img"><img src="<?= base_url('assets/img/berita/') . $value->gambar_berita; ?>" class="img-fluid" alt=""></div>
+                <div class="post-img"><img src="<?= base_url('assets/img/berita/') . $value->gambar_berita; ?>" class="img-thumbnail" alt=""></div>
                 <span class="post-date"><?= date('d-M-Y', strtotime($value->date_cretated)); ?></span>
                 <h3 class="post-title"><?= $value->judul_berita; ?></h3>
                 <a href="<?= base_url('home/detail/' . $value->slug_berita); ?>" class="readmore stretched-link mt-auto"><span>Read More</span><i class="bi bi-arrow-right"></i></a>

@@ -24,6 +24,7 @@
 
   <!-- Template Main CSS File -->
   <link href="<?= base_url() ?>vendor/front-end/assets/css/style.css" rel="stylesheet">
+  <!-- <link href="../../../../vendor/front-end/assets/css/style.css" rel="stylesheet"> -->
 </head>
 
 <body>

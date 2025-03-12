@@ -10,11 +10,15 @@
 --------------------------------------------------------------*/
 :root {
   scroll-behavior: smooth;
+  --base-yellow-1: rgb(248, 186, 52);
+  --base-yellow-2: rgb(208, 150, 27);
+  --base-yellow-3: #684c0f;
+  --base-yellow-4:rgb(74, 54, 9);
 }
 
 body {
   font-family: "Open Sans", sans-serif;
-  color: #F7C873;
+  /* color: var(--base-yellow-2); */
 }
 
 a {
@@ -49,7 +53,7 @@ section {
   letter-spacing: 1px;
   font-weight: 700;
   margin: 0;
-  color: #4154f1;
+  color: var(--base-yellow-2);
   text-transform: uppercase;
 }
 
@@ -59,7 +63,7 @@ section {
   font-size: 38px;
   line-height: 42px;
   font-weight: 700;
-  color: #012970;
+  color: var(--base-yellow-4);
 }
 
 @media (max-width: 768px) {
@@ -130,7 +134,7 @@ section {
   right: 15px;
   bottom: 15px;
   z-index: 99999;
-  background: #4154f1;
+  background: var(--base-yellow-1);
   width: 40px;
   height: 40px;
   border-radius: 4px;
@@ -144,7 +148,7 @@ section {
 }
 
 .back-to-top:hover {
-  background: #6776f4;
+  background: var(--base-yellow-2);
   color: #fff;
 }
 
@@ -432,7 +436,7 @@ section {
   margin: 0;
   font-size: 48px;
   font-weight: 700;
-  color: #012970;
+  color: var(--base-yellow-3);
 }
 
 .hero h2 {
@@ -448,7 +452,7 @@ section {
   border-radius: 4px;
   transition: 0.5s;
   color: #fff;
-  background: #4154f1;
+  background: var(--base-yellow-1);
   box-shadow: 0px 5px 30px rgba(65, 84, 241, 0.4);
 }
 
@@ -471,6 +475,11 @@ section {
 
 .hero .hero-img {
   text-align: right;
+}
+
+.hero .hero-img img {
+  width: 100%;
+  border-radius: 8%;
 }
 
 @media (min-width: 1024px) {
@@ -522,7 +531,7 @@ section {
 .about h3 {
   font-size: 14px;
   font-weight: 700;
-  color: #4154f1;
+  color: var(--base-yellow-2);
   text-transform: uppercase;
 }
 
@@ -543,7 +552,7 @@ section {
   border-radius: 4px;
   transition: 0.5s;
   color: #fff;
-  background: #4154f1;
+  background: var(--base-yellow-1);
   box-shadow: 0px 5px 25px rgba(65, 84, 241, 0.3);
 }
 
@@ -583,7 +592,7 @@ section {
 
 .values .box h3 {
   font-size: 24px;
-  color: #012970;
+  color: var(--base-yellow-4);
   font-weight: 700;
   margin-bottom: 18px;
 }
@@ -623,7 +632,7 @@ section {
   font-size: 36px;
   display: block;
   font-weight: 600;
-  color: #0b198f;
+  color: var(--base-yellow-2);
 }
 
 .counts .count-box p {
@@ -661,7 +670,7 @@ section {
 }
 
 .features .feature-box:hover i {
-  background: #4154f1;
+  background: var(--base-yellow-1);
   color: #fff;
 }
 
@@ -670,7 +679,7 @@ section {
 }
 
 .features .feture-tabs h3 {
-  color: #012970;
+  color: var(--base-yellow-3);
   font-weight: 700;
   font-size: 32px;
   margin-bottom: 10px;
@@ -699,8 +708,8 @@ section {
 }
 
 .features .feture-tabs .nav-link.active {
-  color: #4154f1;
-  border-bottom: 3px solid #4154f1;
+  color: var(--base-yellow-1);
+  border-bottom: 3px solid var(--base-yellow-1);
 }
 
 .features .feture-tabs .tab-content h4 {
@@ -802,20 +811,20 @@ section {
 }
 
 .services .service-box.blue {
-  border-bottom: 3px solid #2db6fa;
+  border-bottom: 3px solid var(--base-yellow-1);
 }
 
 .services .service-box.blue .icon {
-  color: #2db6fa;
+  color: var(--base-yellow-1);
   background: #dbf3fe;
 }
 
 .services .service-box.blue .read-more {
-  color: #2db6fa;
+  color: var(--base-yellow-1);
 }
 
 .services .service-box.blue:hover {
-  background: #2db6fa;
+  background: var(--base-yellow-1);
 }
 
 .services .service-box.orange {
@@ -1034,7 +1043,7 @@ section {
 
 .faq .accordion-button:not(.collapsed) {
   background: none;
-  color: #4154f1;
+  color: var(--base-yellow-1);
   border-bottom: 0;
 }
 
@@ -1071,8 +1080,8 @@ section {
 }
 
 .portfolio #portfolio-flters li:hover, .portfolio #portfolio-flters li.filter-active {
-  color: #4154f1;
-  border-color: #4154f1;
+  color: var(--base-yellow-1);
+  border-color: var(--base-yellow-1);
 }
 
 .portfolio #portfolio-flters li:last-child {
@@ -1170,7 +1179,7 @@ section {
 
 .portfolio .portfolio-wrap .portfolio-links a {
   color: #fff;
-  background: #4154f1;
+  background: var(--base-yellow-1);
   margin: 10px 2px;
   width: 36px;
   height: 36px;
@@ -1187,7 +1196,7 @@ section {
 }
 
 .portfolio .portfolio-wrap .portfolio-links a:hover {
-  background: #5969f3;
+  background: var(--base-yellow-2);
 }
 
 .portfolio .portfolio-wrap:hover img {
@@ -1237,11 +1246,11 @@ section {
   height: 12px;
   background-color: #fff;
   opacity: 1;
-  border: 1px solid #4154f1;
+  border: 1px solid var(--base-yellow-1);
 }
 
 .portfolio-details .portfolio-details-slider .swiper-pagination .swiper-pagination-bullet-active {
-  background-color: #4154f1;
+  background-color: var(--base-yellow-1);
 }
 
 .portfolio-details .portfolio-info {
@@ -1341,11 +1350,11 @@ section {
   height: 12px;
   background-color: #fff;
   opacity: 1;
-  border: 1px solid #4154f1;
+  border: 1px solid var(--base-yellow-2);
 }
 
 .testimonials .swiper-pagination .swiper-pagination-bullet-active {
-  background-color: #4154f1;
+  background-color: var(--base-yellow-2);
 }
 
 .testimonials .swiper-slide {
@@ -1488,11 +1497,11 @@ section {
   height: 12px;
   background-color: #fff;
   opacity: 1;
-  border: 1px solid #4154f1;
+  border: 1px solid var(--base-yellow-2);
 }
 
 .clients .clients-slider .swiper-pagination .swiper-pagination-bullet-active {
-  background-color: #4154f1;
+  background-color: var(--base-yellow-2);
 }
 
 /*--------------------------------------------------------------
@@ -1552,7 +1561,7 @@ section {
 }
 
 .recent-blog-posts .post-box:hover .post-title {
-  color: #4154f1;
+  color: var(--base-yellow-1);
 }
 
 .recent-blog-posts .post-box:hover .post-img img {
@@ -1571,7 +1580,7 @@ section {
 .contact .info-box i {
   font-size: 38px;
   line-height: 0;
-  color: #4154f1;
+  color: var(--base-yellow-1);
 }
 
 .contact .info-box h3 {
@@ -1643,7 +1652,7 @@ section {
 }
 
 .contact .php-email-form input:focus, .contact .php-email-form textarea:focus {
-  border-color: #4154f1;
+  border-color: var(--base-yellow-1);
 }
 
 .contact .php-email-form input {
@@ -1655,7 +1664,7 @@ section {
 }
 
 .contact .php-email-form button[type="submit"] {
-  background: #4154f1;
+  background: var(--base-yellow-1);
   border: 0;
   padding: 10px 30px;
   color: #fff;
@@ -1664,7 +1673,7 @@ section {
 }
 
 .contact .php-email-form button[type="submit"]:hover {
-  background: #5969f3;
+  background: var(--base-yellow-2);
 }
 
 @-webkit-keyframes animate-loading {
@@ -2469,7 +2478,7 @@ p .truncate {
 }
 
 .blog .sidebar .recent-posts h4 a:hover {
-  color: #4154f1;
+  color: var(--base-yellow-1);
 }
 
 .blog .sidebar .recent-posts time {
@@ -2564,14 +2573,14 @@ p .truncate {
   font-size: 16px;
   padding: 0 30px;
   margin: 3px;
-  background: #4154f1;
+  background: var(--base-yellow-1);
   color: #fff;
   transition: 0.3s;
   border-radius: 4px;
 }
 
 .footer .footer-newsletter form input[type="submit"]:hover {
-  background: #5969f3;
+  background: var(--base-yellow-2);
 }
 
 .footer .footer-top {
