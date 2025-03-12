@@ -83,7 +83,7 @@ class M_berita extends CI_Model
     $this->session->set_flashdata('success', 'Berhasil Membuat Berita');
     
     // Koneksi ke database
-    $pdo = new PDO('mysql:host=localhost;dbname=mailer', 'root', '');
+    $pdo = new PDO('mysql:host=localhost;dbname=companyprofile', 'root', '');
 
     // Ambil daftar penerima email
     $recipients = $pdo->query("SELECT * FROM email_recipients")->fetchAll(PDO::FETCH_ASSOC);
